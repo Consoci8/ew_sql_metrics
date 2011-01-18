@@ -1,13 +1,13 @@
 module EwSqlMetrics
   class Metric
-    include MongoMapper::Document
-
-    key :name, String
-    key :duration, Integer
-    key :instrumenter_id, String
-    key :payload, Hash
-    key :started_at, Time
-    key :created_at, Time
+    include Mongoid::Document
+    
+    field :name, :type => String
+    field :duration, :type => Integer
+    field :instrumenter_id, :type => String
+    field :payload, :type => Hash
+    field :started_at, :type => Time
+    field :created_at, :type => Time
 
     def self.store!(args)
       metric = new

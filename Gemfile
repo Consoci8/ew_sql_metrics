@@ -5,7 +5,8 @@ gem "capybara", ">= 0.4.0"
 gem "sqlite3-ruby", :require => "sqlite3"
 
 # START:setup
-gem 'mongo_mapper', '0.8.6'
+#gem 'mongo_mapper', '0.8.6'
+gem "mongoid", "2.0.0.rc.5"
 gem 'mongo', '1.1.5'
 gem 'bson_ext', '1.1.5'
 # END:setup

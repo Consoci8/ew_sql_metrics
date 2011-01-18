@@ -1,8 +1,13 @@
-require "mongo_mapper"
+require "mongoid"
 require "ew_sql_metrics/engine"
 
 # We are required to choose a database name
-MongoMapper.database = "ew_sql_metrics-#{Rails.env}"
+Mongoid.configure do |config|
+  name = "ew_sql_metrics-#{Rails.env}"
+  host = "localhost"
+  config.master = Mongo::Connection.new.db(name)
+  config.persist_in_safe_mode = false
+end
 
 require "active_support/notifications"
 ActiveSupport::Notifications.subscribe /^sql\./ do |*args|
