@@ -1,9 +1,9 @@
 EwSqlMetrics
 Copyright (C) 2011 Consoci8 Sdn Bhd
 
-This rails engine uses Rails 3 Rails Engine & Mongodb. Check Gemfile for other dependencies.
+This rails engine uses Rails 3 Rails Engine & Mongoid. It stores all sql operations made by the Rails application into mongodb.
 
-It stores all sql operations made by the Rails application into mongodb.
+Check Gemfile for other dependencies.
 
 People can view all sql notifications at /sql_metrics
 
