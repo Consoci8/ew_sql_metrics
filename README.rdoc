@@ -8,3 +8,5 @@ Check Gemfile for other dependencies.
 People can view all sql notifications at /sql_metrics
 
 This project uses GPLv3 License.
+
+Credits to José Valim for enginex and his book 'Crafting Rails Application' for an in depth view of the internal workings of Rails3
