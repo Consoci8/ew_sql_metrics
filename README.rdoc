@@ -1,3 +1,10 @@
-= EwSqlMetrics
+EwSqlMetrics
+Copyright (C) 2011 Consoci8 Sdn Bhd
 
-This project rocks and uses GPLv3 License.
+This rails engine uses Rails 3 Rails Engine & Mongodb. Check Gemfile for other dependencies.
+
+It stores all sql operations made by the Rails application into mongodb.
+
+People can view all sql notifications at /sql_metrics
+
+This project uses GPLv3 License.
