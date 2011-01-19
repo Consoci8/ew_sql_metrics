@@ -1,6 +1,6 @@
 class SqlMetricsController < ApplicationController
   def index
-    @metrics = EwSqlMetrics::Metric.all.paginate(:page => params[:page])
+    @metrics = EwSqlMetrics::Metric.all.descending(:created_at).paginate(:page => params[:page])
   end
   
   def destroy
