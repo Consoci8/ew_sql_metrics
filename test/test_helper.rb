@@ -24,3 +24,4 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 class ActiveSupport::TestCase
   setup { EwSqlMetrics::Metric.delete_all }
 end
+

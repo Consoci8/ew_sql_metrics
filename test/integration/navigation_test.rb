@@ -1,26 +1,29 @@
 require 'test_helper'
 
 class NavigationTest < ActiveSupport::IntegrationCase
+  
   test "can visualize and delete notifications created in request" do
-    visit new_user_path 
-    fill_in "Name", :with => "John Doe"
-    fill_in "Age", :with => "23"
-    click_button "Create User"
+    do_login
+  
+    visit new_post_path 
+    fill_in "Title", :with => "Heyheyhey"
+    fill_in "Body", :with => "The Body"
+    click_button "Create Post"
     
     # Check for metrics data on the page
     visit sql_metrics_path
     assert_match "User Load", page.body
     assert_match "INSERT INTO", page.body
-    assert_match "John Doe", page.body
+    assert_match "Heyheyhey", page.body
     assert_match "sql.active_record", page.body
     
-    # Assert the number of rows change when an item is delete
-    assert_difference "all('table tr').count", -1 do
-      click_link "Destroy"
-    end
   end
   
+  
   test "I can see will paginate links" do 
+    
+    do_login
+    
     # will paginate defaults to 30 per page
     31.times do | this|
       visit new_user_path 
@@ -32,4 +35,16 @@ class NavigationTest < ActiveSupport::IntegrationCase
     visit sql_metrics_path
     assert_match "Next", page.body
   end
+  
+  private
+
+  
+  def do_login
+     user = User.create(:email => "testmail@mail.com", :password => "password123", :password_confirmation => "password123")
+     visit new_user_session_path
+     fill_in "Email",  :with => user.email
+     fill_in "Password", :with => user.password
+     click_button "Sign in"
+  end
+  
 end

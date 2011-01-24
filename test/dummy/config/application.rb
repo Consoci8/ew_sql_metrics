@@ -8,8 +8,9 @@ require "action_mailer/railtie"
 
 Bundler.require
 
+require "will_paginate"
 require "ew_sql_metrics"
-require 'will_paginate'
+require "devise"
 
 module Dummy
   class Application < Rails::Application

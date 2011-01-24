@@ -3,7 +3,14 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.integer :age
-
+      
+      t.database_authenticatable
+      t.confirmable
+      t.recoverable
+      t.rememberable
+      t.trackable
+      t.timestamps
+      
       t.timestamps
     end
   end
