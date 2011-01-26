@@ -7,6 +7,8 @@ class EwSqlMetricsTest < ActiveSupport::TestCase
     ActiveSupport::Notifications.instrument "sql.any_orm", payload do
       sleep(0.001) # sleep for 1000 microseconds
     end
+    
+    EwSqlMetrics.finish!
 
     metric = EwSqlMetrics::Metric.first
     assert_equal 1, EwSqlMetrics::Metric.count
@@ -26,6 +28,8 @@ class EwSqlMetricsTest < ActiveSupport::TestCase
       ActiveSupport::Notifications.instrument "sql.any_orm" do
         sleep(0.001) # sleep for 1000 microseconds
       end
+      
+      EwSqlMetrics.finish!
     end
 
     assert !EwSqlMetrics.mute?

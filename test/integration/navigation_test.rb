@@ -4,6 +4,7 @@ class NavigationTest < ActiveSupport::IntegrationCase
   test 'can ignore notifications for a given path' do
     assert_difference "EwSqlMetrics::Metric.count" do
       visit "/users"
+      EwSqlMetrics.finish!
     end
 
     begin
@@ -25,6 +26,7 @@ class NavigationTest < ActiveSupport::IntegrationCase
     fill_in "Title", :with => "Heyheyhey"
     fill_in "Body", :with => "The Body"
     click_button "Create Post"
+    EwSqlMetrics.finish!
     
     # Check for metrics data on the page
     visit sql_metrics_path
@@ -46,6 +48,7 @@ class NavigationTest < ActiveSupport::IntegrationCase
       fill_in "Age", :with => "23"
       click_button "Create User"
     end
+    EwSqlMetrics.finish!
     
     visit sql_metrics_path
     assert_match "Next", page.body
