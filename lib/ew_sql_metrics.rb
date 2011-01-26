@@ -1,5 +1,6 @@
 require "mongoid"
 require "ew_sql_metrics/engine"
+require "ew_sql_metrics/mute_middleware"
 
 # We are required to choose a database name
 Mongoid.configure do |config|
@@ -11,5 +12,5 @@ end
 
 require "active_support/notifications"
 ActiveSupport::Notifications.subscribe /^sql\./ do |*args|
-  EwSqlMetrics::Metric.store!(args)
+  EwSqlMetrics::Metric.store!(args) unless EwSqlMetrics.mute?
 end

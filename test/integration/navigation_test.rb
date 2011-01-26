@@ -1,6 +1,22 @@
 require 'test_helper'
 
 class NavigationTest < ActiveSupport::IntegrationCase
+  test 'can ignore notifications for a given path' do
+    assert_difference "EwSqlMetrics::Metric.count" do
+      visit "/users"
+    end
+
+    begin
+      EwSqlMetrics.mute_regexp = %r{^/users}
+
+      assert_no_difference "EwSqlMetrics::Metric.count" do
+        visit "/users"
+      end
+    ensure
+      EwSqlMetrics.mute_regexp = nil
+    end
+  end
+  
   
   test "can visualize and delete notifications created in request" do
     do_login
@@ -21,7 +37,6 @@ class NavigationTest < ActiveSupport::IntegrationCase
   
   
   test "I can see will paginate links" do 
-    
     do_login
     
     # will paginate defaults to 30 per page

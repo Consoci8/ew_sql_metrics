@@ -18,4 +18,17 @@ class EwSqlMetricsTest < ActiveSupport::TestCase
     assert metric.started_at
     assert metric.created_at
   end
+  
+  test 'can ignore notifications when specified' do
+    EwSqlMetrics.mute! do
+      assert EwSqlMetrics.mute?
+
+      ActiveSupport::Notifications.instrument "sql.any_orm" do
+        sleep(0.001) # sleep for 1000 microseconds
+      end
+    end
+
+    assert !EwSqlMetrics.mute?
+    assert_equal 0, EwSqlMetrics::Metric.count
+  end
 end
