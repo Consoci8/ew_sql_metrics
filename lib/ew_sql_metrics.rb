@@ -3,6 +3,7 @@ require "mongoid"
 require "ew_sql_metrics/engine"
 require "ew_sql_metrics/mute_middleware"
 require "thread"
+require "ew_sql_metrics/user_session_middleware"
 
 # We are required to choose a database name
 Mongoid.configure do |config|
@@ -32,6 +33,11 @@ EwSqlMetrics.queue
 EwSqlMetrics.thread
 
 ActiveSupport::Notifications.subscribe /^sql\./ do |*args|
+  # Recording whose viewing the application
+  args << EwSqlMetrics.curr_user.id if EwSqlMetrics.curr_user
+  args << EwSqlMetrics.curr_user.email if EwSqlMetrics.curr_user
+  
+  # Subscribe the sql operations and inserting in a simple Ruby queue
   EwSqlMetrics.queue << args unless EwSqlMetrics.mute?
 end
 

@@ -2,15 +2,20 @@
 
 <table cellspacing="10">
   <tr>
+	<th>UserID</th>
+	<th>UserEmail</th>
     <th>Name</th>
     <th>Duration</th>
     <th>Started at</th>
-    <th>Payload</th>
+    <th>Payload</th>	
     <th></th>
+	
   </tr>
 
 <% @metrics.each do |metric| %>
   <tr>
+	<td><%= metric.user_id %></td>
+	<td><%= metric.user_email %></td>
     <td><%= metric.name %></td>
     <td><%= metric.duration %> ms</td>
     <td>
@@ -22,6 +27,7 @@
         <p><b><%= k.humanize %></b><br /> <%= v %></p>
       <% end %>
     </td>
+	
     <td><%= link_to 'Destroy', sql_metric_path(metric),
       :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

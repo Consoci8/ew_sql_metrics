@@ -7,7 +7,25 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+	<div data-role="header">
+	  
+	  <% if user_signed_in? %>
+		<p>Hello, <%= current_user.email %>.</p>
+		<%= link_to 'Sql Metrics', sql_metrics_path %>
+		<%= link_to_unless_current 'Posts', posts_path %>
+		<a href="<%= root_path %>" data-role="button" data-icon="">Home</a>
+		<a href="<%= destroy_user_session_path %>" data-role="button">Logout</a>
+	  <% else %>
+		  <div data-role="controlgroup">
+			<div data-type="horizontal">
+				<%= link_to 'Sign In', new_user_session_path  %>
+				<%= link_to 'Sign Up', new_user_registration_path  %>
+			</div>
+		  </div>
+	  <% end %>
 
+		<%= yield :head %>
+	</div>
 <%= yield %>
 
 </body>
