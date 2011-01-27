@@ -8,8 +8,14 @@ module EwSqlMetrics
     end
     
     def call(env)
-      EwSqlMetrics.curr_user = env["warden"].user
-      @app.call(env)
+      status, headers, body = @app.call(env)
+      
+      if !env["warden"].nil?
+        EwSqlMetrics.curr_user = env["warden"].user
+        [status, headers, body]
+      else
+        [status, headers, body]
+      end
     end
   end
 end

@@ -2,11 +2,7 @@ require 'test_helper'
 
 class NavigationTest < ActiveSupport::IntegrationCase
   test 'can ignore notifications for a given path' do
-    assert_difference "EwSqlMetrics::Metric.count" do
-      visit "/users"
-      EwSqlMetrics.finish!
-    end
-
+  
     begin
       EwSqlMetrics.mute_regexp = %r{^/users}
 
@@ -30,6 +26,7 @@ class NavigationTest < ActiveSupport::IntegrationCase
     
     # Check for metrics data on the page
     visit sql_metrics_path
+    assert_match "testmail@mail.com", page.body
     assert_match "User Load", page.body
     assert_match "INSERT INTO", page.body
     assert_match "Heyheyhey", page.body
