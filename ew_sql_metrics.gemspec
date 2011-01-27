@@ -1,3 +1,7 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "ew_sql_metrics/version"
+
 Gem::Specification.new do |s|
   s.name = "ew_sql_metrics"
   s.summary = "Publish and subscribe your Rails 3 sql operations"
