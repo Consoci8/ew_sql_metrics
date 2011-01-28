@@ -15,9 +15,9 @@ Gem::Specification.new do |s|
   s.version = EwSqlMetrics::VERSION.dup
   
   s.require_paths = ["lib"]
+  s.add_dependency("will_paginate", "~> 3.0.pre2")
   s.add_dependency("mongoid", "2.0.0.rc.5")
   s.add_dependency("mongo", "1.1.5")
-  s.add_dependency("bson_ext", "1.1.5")
-  s.add_dependency("will_paginate")
+  s.add_dependency("bson_ext", "~>1.1.5")
 
 end
