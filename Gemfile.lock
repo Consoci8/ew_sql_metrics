@@ -40,7 +40,7 @@ GEM
     arel (2.0.6)
     bcrypt-ruby (2.1.4)
     bson (1.1.5)
-    bson_ext (1.1.5)
+    bson_ext (1.2.0)
     builder (2.1.2)
     capybara (0.4.0)
       celerity (>= 0.7.9)
@@ -117,7 +117,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext (= 1.1.5)
+  bson_ext (= 1.2.0)
   capybara (>= 0.4.0)
   devise!
   mongo (= 1.1.5)

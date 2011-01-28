@@ -6,7 +6,7 @@ gem "sqlite3-ruby", :require => "sqlite3"
 
 gem "mongoid", "2.0.0.rc.5"
 gem 'mongo', '1.1.5'
-gem 'bson_ext', '1.1.5'
+gem 'bson_ext', '1.2.0'
 gem 'will_paginate'
 gem 'devise', :git => "git://github.com/plataformatec/devise.git"
 
