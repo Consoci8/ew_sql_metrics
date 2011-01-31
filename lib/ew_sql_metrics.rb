@@ -34,8 +34,10 @@ EwSqlMetrics.thread
 
 ActiveSupport::Notifications.subscribe /^sql\./ do |*args|
   # Recording whose viewing the application
-  args << EwSqlMetrics.curr_user.id if EwSqlMetrics.curr_user
-  args << EwSqlMetrics.curr_user.email if EwSqlMetrics.curr_user
+  if EwSqlMetrics.curr_user
+    args << EwSqlMetrics.curr_user.id 
+    args << EwSqlMetrics.curr_user.email 
+  end
   
   # Subscribe the sql operations and inserting in a simple Ruby queue
   EwSqlMetrics.queue << args unless EwSqlMetrics.mute?

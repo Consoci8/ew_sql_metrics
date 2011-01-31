@@ -1,9 +1,8 @@
 <h1>Listing SQL Metrics</h1>
 
+<p>All sql queries made by <%= current_user.email %></p>
 <table cellspacing="10">
   <tr>
-	<th>UserID</th>
-	<th>UserEmail</th>
     <th>Name</th>
     <th>Duration</th>
     <th>Started at</th>
@@ -14,8 +13,6 @@
 
 <% @metrics.each do |metric| %>
   <tr>
-	<td><%= metric.user_id %></td>
-	<td><%= metric.user_email %></td>
     <td><%= metric.name %></td>
     <td><%= metric.duration %> ms</td>
     <td>

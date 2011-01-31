@@ -2,7 +2,8 @@ class SqlMetricsController < ApplicationController
   before_filter :check_auth
   
   def index
-    @metrics = EwSqlMetrics::Metric.all.descending(:created_at).paginate(:page => params[:page])
+    @metrics = EwSqlMetrics::Metric.all(:conditions =>
+     { :user_email => current_user.email }).descending(:created_at).paginate(:page => params[:page])
   end
   
   def destroy
